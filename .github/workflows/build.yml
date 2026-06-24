@@ -15,7 +15,9 @@ jobs:
       - name: Clone mihomo kernel
         run: |
           mkdir -p core/src/foss/golang
-          git clone --depth 1 --branch Alpha https://github.com/MetaCubeX/mihomo core/src/foss/golang/clash
+          git clone https://github.com/MetaCubeX/mihomo core/src/foss/golang/clash
+          cd core/src/foss/golang/clash
+          git checkout 5184081ac327394d9e15fa5d5f9f4a61e723fd94
 
       - name: Setup Java
         uses: actions/setup-java@v4
