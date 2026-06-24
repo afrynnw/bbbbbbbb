@@ -1,4 +1,4 @@
-name: Build Tii APK
+name: Build PreRelease APK
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  BuildPreRelease:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,34 +33,10 @@ jobs:
       - name: Build
         uses: gradle/gradle-build-action@v3
         with:
-          arguments: --no-daemon app:assembleAlphaRelease
+          arguments: --no-daemon app:assemblePreRelease
 
-      - name: Upload APK (universal)
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Tii-APK-universal
-          path: app/build/outputs/apk/alpha/release/*-universal-*.apk
-
-      - name: Upload APK (arm64-v8a)
-        uses: actions/upload-artifact@v4
-        with:
-          name: Tii-APK-arm64-v8a
-          path: app/build/outputs/apk/alpha/release/*-arm64-v8a-*.apk
-
-      - name: Upload APK (armeabi-v7a)
-        uses: actions/upload-artifact@v4
-        with:
-          name: Tii-APK-armeabi-v7a
-          path: app/build/outputs/apk/alpha/release/*-armeabi-v7a-*.apk
-
-      - name: Upload APK (x86_64)
-        uses: actions/upload-artifact@v4
-        with:
-          name: Tii-APK-x86_64
-          path: app/build/outputs/apk/alpha/release/*-x86_64-*.apk
-
-      - name: Upload APK (x86)
-        uses: actions/upload-artifact@v4
-        with:
-          name: Tii-APK-x86
-          path: app/build/outputs/apk/alpha/release/*-x86-*.apk
+          name: PreRelease-APK
+          path: app/build/outputs/apk/preRelease/*.apk
