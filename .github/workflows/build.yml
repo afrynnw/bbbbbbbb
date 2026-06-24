@@ -11,8 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: 'recursive'
+
+      - name: Clone mihomo kernel
+        run: |
+          mkdir -p core/src/foss/golang
+          git clone --depth 1 --branch Alpha https://github.com/MetaCubeX/mihomo core/src/foss/golang/clash
 
       - name: Setup Java
         uses: actions/setup-java@v4
